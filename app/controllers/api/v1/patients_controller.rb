@@ -1,8 +1,8 @@
 class Api::V1::PatientsController < ApplicationController
     
-    def index
+    def index 
         patients = Patient.all 
-        render json: patients 
+        render json: PatientSerializer.new(patients)
     end 
 
     def create
