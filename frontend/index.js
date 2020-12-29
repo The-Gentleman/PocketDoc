@@ -1,8 +1,7 @@
-
 document.addEventListener('DOMContentLoaded', () => {
     getPatient()
 })
-// asycn await
+
 function getPatient(){
     const patientEndPoint = 'http://localhost:3000/api/v1/patients'
     // 1 of 3
@@ -21,8 +20,7 @@ function getPatient(){
         })
 }
 
-function exerciseForm(event){
-    event.preventDefault()
+function exerciseForm(){
     const exerciseForm = `
     <br>
       <label>Exercise Name:</label>
@@ -39,4 +37,14 @@ function exerciseForm(event){
   `
   document.querySelector('#exercise-form-container').innerHTML += exerciseForm
 }
+
+function exerciseFormHandler(event){
+    const exerciseName =  document.querySelector("#input-title").value;
+    const numberOfRepsString = document.querySelector("#reps").value;
+    const numberOfReps = parseInt(numberOfRepsString);
+    exerciseFetch(exerciseName, numberOfReps, patientValue);
+}
+
+
+
 
