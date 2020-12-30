@@ -56,6 +56,26 @@ function exerciseFormHandler(e){
 }
 
 function exerciseFetch(name, reps, patient_id){
+    const exerciseEndpoint = 'http://localhost:3000/api/v1/exercises'
+    const bodyData = {name, reps, patient_id}
+    //     // 2 of 3
+    fetch(exerciseEndpoint, {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(bodyData)
+    })
+    .then(response => response.json())
+    .then(exercises =>{
+        const exerciseData = exercises.data.attributes;
+        const exerciseMarkup = `
+        <div data-id=${exercises.id}>
+        <h3>Exercise Name: ${exerciseData.name}</h3>
+        <h3>Number of Reps: ${exerciseData.reps}</h3>
+        </div>
+        `
+        document.querySelector("#exercise-data-container").innerHTML += exerciseMarkup;
+    })
 
 }
+
 
