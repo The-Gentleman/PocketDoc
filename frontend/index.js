@@ -58,7 +58,7 @@ function exerciseFormHandler(e){
 function exerciseFetch(name, reps, patient_id){
     const exerciseEndpoint = 'http://localhost:3000/api/v1/exercises'
     const bodyData = {name, reps, patient_id}
-    //     // 2 of 3
+    // 2 of 3
     fetch(exerciseEndpoint, {
         method: "POST",
         headers: {"Content-Type": "application/json"},
@@ -71,6 +71,9 @@ function exerciseFetch(name, reps, patient_id){
         <div data-id=${exercises.id}>
         <h3>Exercise Name: ${exerciseData.name}</h3>
         <h3>Number of Reps: ${exerciseData.reps}</h3>
+        </div>
+        <div class="delete-button">
+        <button id="delete-exercise-button" type="delete" class="btn btn-secondary">Delete Exercise</button>
         </div>
         `
         document.querySelector("#exercise-data-container").innerHTML += exerciseMarkup;
