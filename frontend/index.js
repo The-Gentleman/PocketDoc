@@ -23,6 +23,7 @@ function getPatient(){
 function exerciseForm(){
     const exerciseForm = `
     <br>
+    <form id="create-exercise-form">
       <label>Exercise Name:</label>
       <input id='input-title' type="text" name="title" value=""
       placeholder="Exercise name" class="input-text" required>
@@ -32,19 +33,14 @@ function exerciseForm(){
       placeholder="reps" class="input-number" required>
       <br><br>
       <input id="submit" type="submit" name="submit" value="Create Exercise" class="submit">
-      <br><br>
     </form>
   `
   document.querySelector('#exercise-form-container').innerHTML += exerciseForm
+  document.querySelector("#create-exercise-form").addEventListener("submit", (e) => exerciseFormHandler(e))
 }
 
-function exerciseFormHandler(event){
-    const exerciseName =  document.querySelector("#input-title").value;
-    const numberOfRepsString = document.querySelector("#reps").value;
-    const numberOfReps = parseInt(numberOfRepsString);
-    exerciseFetch(exerciseName, numberOfReps, patientValue);
+function exerciseFormHandler(e){
+    e.preventDefault(e);
+    console.log(e)
 }
-
-
-
 
