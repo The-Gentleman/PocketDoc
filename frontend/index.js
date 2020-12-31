@@ -70,7 +70,7 @@ function exerciseFetch(name, reps, patient_id){
     .then(exercises =>{
         const exerciseData = exercises.data.attributes;
         const exerciseMarkup = `
-            <input type="hidden" id="exercisesID" name="exercisesID" value="${exercises._id}">
+            <input type="hidden" id="exercisesID" name="exercisesID" value="${exercises.data.id}">
             <h3>Exercise Name: ${exerciseData.name}</h3>
             <h3>Number of Reps: ${exerciseData.reps}</h3>
             <button id="delete-exercise-button" type="delete" class="btn btn-secondary">Delete Exercise</button>
@@ -84,12 +84,15 @@ function exerciseFetch(name, reps, patient_id){
 
 function deleteExercise(event){
     const exerciseEndpoint = 'http://localhost:3000/api/v1/exercises';
-    // const bodyData = {name, reps, patient_id};
     let deletePost = event.target.id == "delete-exercise-button";
     let exerciseId = document.getElementById("exercisesID").value;
+    debugger
     if (deletePost){
-        console.log(exerciseId)
-        // document.querySelector("#exercise-data-container").children has a div called dataset where exercise ID is supposed to be
+        fetch(`${exerciseEndpoint}`/exerciseId, {
+            method: "DELETE"
+        })
+        .then(response => response.json())
+        .then(() => location.reload())
     }
 //     // 3 of 3
 }
