@@ -16,6 +16,11 @@ class Api::V1::ExercisesController < ApplicationController
         end 
     end 
 
+    def destroy
+        Exercise.find(params[:id]).delete
+        binding.pry
+    end 
+
 
     private
     def exercise_params
