@@ -90,12 +90,15 @@ function exerciseFetch(name, reps, patient_id){
         body: JSON.stringify(bodyData)
     })
         .then(response => response.json())
-        .then(exercises =>{
-            const exerciseData = exercises.data.attributes;
+        .then(exercises => {
+            const exerciseAttributes = exercises.data.attributes;
+            const exercisesData = exercises.data 
+
+            let newExercise = new Exercise(exercises.data, exercises.data.attributes)
             const exerciseMarkup = `
                 <input type="hidden" id="exercisesID" name="exercisesID" value="${exercises.data.id}">
-                <label>Exercise Name: ${exerciseData.name}</label>
-                <label>Number of Reps: ${exerciseData.reps}</label>
+                <label>Exercise Name: ${exerciseAttributes.name}</label>
+                <label>Number of Reps: ${exerciseAttributes.reps}</label>
             </div>
             `
             document.querySelector("#exercise-data-container").innerHTML += exerciseMarkup;
