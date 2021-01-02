@@ -17,8 +17,8 @@ class Api::V1::ExercisesController < ApplicationController
     end 
 
     def destroy
-        Exercise.find(params[:id]).delete
-        binding.pry
+        exercise = Exercise.find(params[:id]).delete
+        render json: ExerciseSerializer.new(exercise)
     end 
 
 
