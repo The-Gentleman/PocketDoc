@@ -9,18 +9,23 @@ function getPatient(){
     fetch(patientEndPoint)
         .then(response => response.json())
         .then(patient => {
-            const patientInfo = `
-            <div id="patient-container">
-            <h2>Patient Name: ${patient.data[0].attributes.name}</h2>
-            <h3>Patient Diagnosis: ${patient.data[0].attributes.diagnosis}</h3>
-            <div class="exercise-button-container">
-            <button id="exercise-button"type="submit" class="btn btn-secondary">Assign an Exercise</button>
-            </div>
-            </div>
-            `
-            document.querySelector('#patient-container').innerHTML += patientInfo;
-            document.getElementById("exercise-button").addEventListener("click", exerciseForm);
-    
+            const patientAttributes = patient.data
+            let newPatient = new Patient(patient.data[0])
+            patientAttributes.forEach(patient => {            
+                const patientInfo = `
+                <div id="patient-container">
+                <input type="hidden" id="patient-id" name="patient-id" value="${patient.id}">
+                <h2>Patient Name: ${patient.attributes.name}</h2>
+                <h3>Patient Diagnosis: ${patient.attributes.diagnosis}</h3>
+                <div class="exercise-button-container">
+                <button id="exercise-button"type="submit" class="btn btn-secondary">Assign an Exercise</button>
+                </div>
+                </div>
+                `
+                document.querySelector('#patient-container').innerHTML += patientInfo;
+                document.getElementById("exercise-button").addEventListener("click", exerciseForm);
+        
+    })
         })
     }
     
@@ -98,7 +103,9 @@ function exerciseFetch(name, reps, patient_id){
             const exerciseMarkup = `
                 <input type="hidden" id="exercisesID" name="exercisesID" value="${exercises.data.id}">
                 <label>Exercise Name: ${exerciseAttributes.name}</label>
+                <br><br>
                 <label>Number of Reps: ${exerciseAttributes.reps}</label>
+                <br><br>
             </div>
             `
             document.querySelector("#exercise-data-container").innerHTML += exerciseMarkup;
@@ -108,19 +115,19 @@ function exerciseFetch(name, reps, patient_id){
 }
 
 
-// function deleteExercise(event){
-//     const exerciseEndpoint = 'http://localhost:3000/api/v1/exercises';
-//     let deletePost = event.target.id == "delete-exercise-button";
-//     let exerciseId = document.getElementById("exercisesID").value;
-//     if (deletePost){
-//         // 3 of 3
-//         fetch(`${exerciseEndpoint}`/exerciseId, {
-//             method: "DELETE"
-//         })
-//         .then(response => response.json())
-//         .then(() => location.reload())
-//     }
-// }
+function deleteExercise(event){
+    const exerciseEndpoint = 'http://localhost:3000/api/v1/exercises';
+    let deletePost = event.target.id == "delete-exercise-button";
+    let exerciseId = document.getElementById("exercisesID").value;
+    if (deletePost){
+        // 3 of 3
+        fetch(`${exerciseEndpoint}`/exerciseId, {
+            method: "DELETE"
+        })
+        .then(response => response.json())
+        .then(() => location.reload())
+    }
+}
 
 // ===================================================================================================
 // PLAN A:
