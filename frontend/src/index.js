@@ -10,8 +10,8 @@ function getPatient(){
         .then(response => response.json())
         .then(patient => {
             const patientAttributes = patient.data
-            let newPatient = new Patient(patient.data[0])
             patientAttributes.forEach(patient => {            
+                const newPatient = new Patient(patient, patient.attributes)
                 const patientInfo = `
                 <div id="patient-container">
                 <input type="hidden" id="patient-id" name="patient-id" value="${patient.id}">
@@ -115,19 +115,19 @@ function exerciseFetch(name, reps, patient_id){
 }
 
 
-function deleteExercise(event){
-    const exerciseEndpoint = 'http://localhost:3000/api/v1/exercises';
-    let deletePost = event.target.id == "delete-exercise-button";
-    let exerciseId = document.getElementById("exercisesID").value;
-    if (deletePost){
-        // 3 of 3
-        fetch(`${exerciseEndpoint}`/exerciseId, {
-            method: "DELETE"
-        })
-        .then(response => response.json())
-        .then(() => location.reload())
-    }
-}
+// function deleteExercise(event){
+//     const exerciseEndpoint = 'http://localhost:3000/api/v1/exercises';
+//     let deletePost = event.target.id == "delete-exercise-button";
+//     let exerciseId = document.getElementById("exercisesID").value;
+//     if (deletePost){
+//         // 3 of 3
+//         fetch(`${exerciseEndpoint}`/exerciseId, {
+//             method: "DELETE"
+//         })
+//         .then(response => response.json())
+//         .then(() => location.reload())
+//     }
+// }
 
 // ===================================================================================================
 // PLAN A:
