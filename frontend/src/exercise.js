@@ -6,7 +6,6 @@ class Exercise {
         this.reps = exerciseAttributes.reps
         this.patient_id = exerciseAttributes.patient_id
         Exercise.all.push(this)
-    }
-    
+    }    
 }
 Exercise.all = [];
