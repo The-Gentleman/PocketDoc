@@ -44,7 +44,7 @@ function viewCurrentExercises(){
                 <label>Suggested Reps: ${exercise.attributes.reps}</label>
                 <br><br>
                 `
-                document.querySelector("#view-exercise-contaienr").innerHTML += exerciseInfo;
+                document.querySelector("#view-exercise-container").innerHTML += exerciseInfo;
             })
         })
 
