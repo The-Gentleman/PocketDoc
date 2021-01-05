@@ -15,8 +15,8 @@ function getPatient(){
                 const patientInfo = `
                 <div id="patient-container">
                 <input type="hidden" id="patient-id" name="patient-id" value="${patient.id}">
-                <h2>Patient Name: ${patient.attributes.name}</h2>
-                <h3>Patient Diagnosis: ${patient.attributes.diagnosis}</h3>
+                <h4>Patient Name: ${patient.attributes.name}</h4>
+                <h4>Patient Diagnosis: ${patient.attributes.diagnosis}</h4>
                 <div class="exercise-button-container">
                 <button id="exercise-button"type="submit" class="btn btn-secondary">Assign an Exercise</button>
                 </div>
