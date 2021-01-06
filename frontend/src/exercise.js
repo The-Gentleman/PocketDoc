@@ -8,7 +8,7 @@ class Exercise {
         Exercise.all.push(this)
     }    
 
-static viewCurrentExercises(){
+    static viewCurrentExercises(){
     const exerciseEndpoint = 'http://localhost:3000/api/v1/exercises';
     // 2 of 3
     fetch(exerciseEndpoint)
@@ -27,10 +27,36 @@ static viewCurrentExercises(){
             })
         })
 
-}
-    
+    }
+
+    static exerciseForm(){
+        const exerciseForm = `
+            <br>
+            <form id="create-exercise-form">
+              <label>Patient Name:</label>
+              <select id="exercises" name="exercises">
+                <option value="1">Ted</option>
+              </select>
+              <br><br>
+              <label>Exercise Name:</label>
+              <input id='input-title' type="text" name="title" value=""
+              placeholder="Exercise name" class="input-text" required>
+              <br><br>
+              <label>Number of Reps:</label>
+              <input type="number" id="reps" name="reps" min="1" max="50"
+              placeholder="reps" class="input-number" required>
+              <br><br>
+                <input id="submit" type="submit" name="submit" value="Create Exercise" class="submit">
+              <br><br>
+            </form>
+      `  
+      document.querySelector('#exercise-form-container').innerHTML += exerciseForm;
+      document.querySelector("#create-exercise-form").addEventListener("submit", (e) => exerciseFormHandler(e));
+    }
 
 
-    
+
+
+
 }
 Exercise.all = [];
