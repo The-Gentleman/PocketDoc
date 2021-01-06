@@ -85,31 +85,32 @@ function getPatient(){
 //     exerciseFetch(exerciseName, numberOfReps, patientValue);
 // }
 
-function exerciseFetch(name, reps, patient_id){
-    const exerciseEndpoint = 'http://localhost:3000/api/v1/exercises'
-    const bodyData = {name, reps, patient_id}
-    // 3 of 3
-    fetch(exerciseEndpoint, {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify(bodyData)
-    })
-        .then(response => response.json())
-        .then(exercises => {
-            const exerciseAttributes = exercises.data.attributes;
-            const exercisesData = exercises.data 
+// function exerciseFetch(name, reps, patient_id){
+//     const exerciseEndpoint = 'http://localhost:3000/api/v1/exercises'
+//     const bodyData = {name, reps, patient_id}
+//     // 3 of 3
+//     fetch(exerciseEndpoint, {
+//         method: "POST",
+//         headers: {"Content-Type": "application/json"},
+//         body: JSON.stringify(bodyData)
+//     })
+//         .then(response => response.json())
+//         .then(exercises => {
+//             const exerciseAttributes = exercises.data.attributes;
+//             const exercisesData = exercises.data 
 
-            let newExercise = new Exercise(exercises.data, exercises.data.attributes)
-            const exerciseMarkup = `
-                <input type="hidden" id="exercisesID" name="exercisesID" value="${exercises.data.id}">
-                <label>Exercise Name: ${exerciseAttributes.name}</label>
-                <br><br>
-                <label>Number of Reps: ${exerciseAttributes.reps}</label>
-                <br><br>
-            </div>
-            `
-            document.querySelector("#exercise-data-container").innerHTML += exerciseMarkup;
-            // document.querySelector("#delete-exercise-button").addEventListener("click", (event) => deleteExercise(event));
+//             let newExercise = new Exercise(exercises.data, exercises.data.attributes)
+//             const exerciseMarkup = `
+//                 <input type="hidden" id="exercisesID" name="exercisesID" value="${exercises.data.id}">
+//                 <label>Exercise Name: ${exerciseAttributes.name}</label>
+//                 <br><br>
+//                 <label>Number of Reps: ${exerciseAttributes.reps}</label>
+//                 <br><br>
+//             </div>
+//             `
+//             document.querySelector("#exercise-data-container").innerHTML += exerciseMarkup;
+//             // document.querySelector("#delete-exercise-button").addEventListener("click", (event) => deleteExercise(event));
 
-        })
-}
+//         }
+// )
+// }
