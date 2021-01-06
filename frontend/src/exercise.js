@@ -87,8 +87,7 @@ class Exercise {
                 `
                 document.querySelector("#exercise-data-container").innerHTML += exerciseMarkup;
 
-            }
-            )
+            })
     }   
 }
 Exercise.all = [];
