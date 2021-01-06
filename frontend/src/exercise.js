@@ -10,7 +10,6 @@ class Exercise {
 
     static viewCurrentExercises(){
     const exerciseEndpoint = 'http://localhost:3000/api/v1/exercises';
-    // 2 of 3
     fetch(exerciseEndpoint)
         .then(response => response.json())
         .then(exercises => {
@@ -67,7 +66,6 @@ class Exercise {
     static exerciseFetch(name, reps, patient_id){
         const exerciseEndpoint = 'http://localhost:3000/api/v1/exercises'
         const bodyData = {name, reps, patient_id}
-        // 3 of 3
         fetch(exerciseEndpoint, {
             method: "POST",
             headers: {"Content-Type": "application/json"},
