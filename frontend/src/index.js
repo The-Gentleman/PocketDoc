@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     getPatient();
-    viewCurrentExercises();
+    Exercise.viewCurrentExercises();
 })
 
 function getPatient(){
@@ -15,8 +15,8 @@ function getPatient(){
                 const patientInfo = `
                 <div id="patient-container">
                 <input type="hidden" id="patient-id" name="patient-id" value="${patient.id}">
-                <h4>Patient Name: ${patient.attributes.name}</h4>
-                <h4>Patient Diagnosis: ${patient.attributes.diagnosis}</h4>
+                <h2>Patient Name: ${patient.attributes.name}</h2>
+                <h3>Patient Diagnosis: ${patient.attributes.diagnosis}</h3>
                 <div class="exercise-button-container">
                 <button id="exercise-button"type="submit" class="btn btn-secondary">Assign an Exercise</button>
                 </div>
@@ -29,26 +29,26 @@ function getPatient(){
         })
     }
     
-function viewCurrentExercises(){
-    const exerciseEndpoint = 'http://localhost:3000/api/v1/exercises';
-    // 2 of 3
-    fetch(exerciseEndpoint)
-        .then(response => response.json())
-        .then(exercises => {
-            const exercisesData = exercises.data
-            exercisesData.forEach(exercise => {
-                const exerciseInfo = `
-                <br>
-                <label>Exercise Name: ${exercise.attributes.name}</label>
-                <br>
-                <label>Suggested Reps: ${exercise.attributes.reps}</label>
-                <br><br>
-                `
-                document.querySelector("#view-exercise-container").innerHTML += exerciseInfo;
-            })
-        })
+// function viewCurrentExercises(){
+//     const exerciseEndpoint = 'http://localhost:3000/api/v1/exercises';
+//     // 2 of 3
+//     fetch(exerciseEndpoint)
+//         .then(response => response.json())
+//         .then(exercises => {
+//             const exercisesData = exercises.data
+//             exercisesData.forEach(exercise => {
+//                 const exerciseInfo = `
+//                 <br>
+//                 <label>Exercise Name: ${exercise.attributes.name}</label>
+//                 <br>
+//                 <label>Suggested Reps: ${exercise.attributes.reps}</label>
+//                 <br><br>
+//                 `
+//                 document.querySelector("#view-exercise-container").innerHTML += exerciseInfo;
+//             })
+//         })
 
-}
+// }
 
 function exerciseForm(){
     const exerciseForm = `
@@ -113,27 +113,3 @@ function exerciseFetch(name, reps, patient_id){
 
         })
 }
-
-
-// function deleteExercise(event){
-//     const exerciseEndpoint = 'http://localhost:3000/api/v1/exercises';
-//     let deletePost = event.target.id == "delete-exercise-button";
-//     let exerciseId = document.getElementById("exercisesID").value;
-//     if (deletePost){
-//         // 3 of 3
-//         fetch(`${exerciseEndpoint}`/exerciseId, {
-//             method: "DELETE"
-//         })
-//         .then(response => response.json())
-//         .then(() => location.reload())
-//     }
-// }
-
-// ===================================================================================================
-// PLAN A:
-// DELETE FETCH REQUEST 
-// PLAN B:
-// GET FETCH REQUEST FOR EXERCISES
-// ===================================================================================================
-
-
