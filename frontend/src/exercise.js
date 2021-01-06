@@ -51,8 +51,19 @@ class Exercise {
             </form>
       `  
       document.querySelector('#exercise-form-container').innerHTML += exerciseForm;
-      document.querySelector("#create-exercise-form").addEventListener("submit", (e) => exerciseFormHandler(e));
+      document.querySelector("#create-exercise-form").addEventListener("submit", (e) => Exercise.exerciseFormHandler(e));
     }
+
+    static exerciseFormHandler(e){
+            e.preventDefault(e);
+            const patientValueString = document.querySelector("#exercises").value
+            const patientValue = parseInt(patientValueString);
+            const exerciseName =  document.querySelector("#input-title").value;
+            const numberOfRepsString = document.querySelector("#reps").value;
+            const numberOfReps = parseInt(numberOfRepsString);
+            exerciseFetch(exerciseName, numberOfReps, patientValue);
+    }
+        
 
 
 

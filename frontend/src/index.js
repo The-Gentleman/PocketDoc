@@ -75,15 +75,15 @@ function getPatient(){
 //   document.querySelector("#create-exercise-form").addEventListener("submit", (e) => exerciseFormHandler(e));
 // }
 
-function exerciseFormHandler(e){
-    e.preventDefault(e);
-    const patientValueString = document.querySelector("#exercises").value
-    const patientValue = parseInt(patientValueString);
-    const exerciseName =  document.querySelector("#input-title").value;
-    const numberOfRepsString = document.querySelector("#reps").value;
-    const numberOfReps = parseInt(numberOfRepsString);
-    exerciseFetch(exerciseName, numberOfReps, patientValue);
-}
+// function exerciseFormHandler(e){
+//     e.preventDefault(e);
+//     const patientValueString = document.querySelector("#exercises").value
+//     const patientValue = parseInt(patientValueString);
+//     const exerciseName =  document.querySelector("#input-title").value;
+//     const numberOfRepsString = document.querySelector("#reps").value;
+//     const numberOfReps = parseInt(numberOfRepsString);
+//     exerciseFetch(exerciseName, numberOfReps, patientValue);
+// }
 
 function exerciseFetch(name, reps, patient_id){
     const exerciseEndpoint = 'http://localhost:3000/api/v1/exercises'
