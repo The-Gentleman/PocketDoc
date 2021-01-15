@@ -8,16 +8,27 @@ class Patient {
 
     static getPatient(){
         const patientEndPoint = 'http://localhost:3000/api/v1/patients'
-        // 1 of 3
         fetch(patientEndPoint)
-            .then(response => response.json())
-            .then(patient => {
+        .then(response => response.json())
+        .then(patient => {
                 const patientAttributes = patient.data
-                patientAttributes.forEach(patient => {            
+                patientAttributes.sort(function(a,b){
+                    const patientA = a.attributes.name
+                    const patientB = b.attributes.name
+                    if (patientA < patientB){
+                        return -1;
+                    }
+                    if (patientA > patientB){
+                        return 1;
+                    }
+                    return 0;
+                })
+
+                patientAttributes.forEach(patient => {   
                     const newPatient = new Patient(patient, patient.attributes)
-                    const patientInfo = `
+                    
+                    const patientDiagnosis = `
                     <div id="patient-container">
-                    <input type="hidden" id="patient-id" name="patient-id" value="${patient.id}">
                     <h2>Patient Name: ${patient.attributes.name}</h2>
                     <h3>Patient Diagnosis: ${patient.attributes.diagnosis}</h3>
                     <div class="exercise-button-container">
@@ -25,10 +36,11 @@ class Patient {
                     </div>
                     </div>
                     `
-                    document.querySelector('#patient-container').innerHTML += patientInfo;
+                    
+                    document.querySelector('#patient-container').innerHTML += patientDiagnosis;
                     document.getElementById("exercise-button").addEventListener("click", Exercise.exerciseForm);
-            
-        })
+                    
+                })
             })
         }
         

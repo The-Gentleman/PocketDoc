@@ -76,7 +76,6 @@ class Exercise {
                 const exerciseAttributes = exercises.data.attributes;
                 const exercisesData = exercises.data 
 
-                let newExercise = new Exercise(exercises.data, exercises.data.attributes)
                 const exerciseMarkup = `
                     <input type="hidden" id="exercisesID" name="exercisesID" value="${exercises.data.id}">
                     <label>Exercise Name: ${exerciseAttributes.name}</label>
