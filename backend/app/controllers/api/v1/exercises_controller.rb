@@ -16,12 +16,6 @@ class Api::V1::ExercisesController < ApplicationController
         end 
     end 
 
-    def destroy
-        exercise = Exercise.find(params[:id]).delete
-        render json: ExerciseSerializer.new(exercise)
-    end 
-
-
     private
     def exercise_params
         params.require(:exercise).permit(:name, :reps, :patient_id)
